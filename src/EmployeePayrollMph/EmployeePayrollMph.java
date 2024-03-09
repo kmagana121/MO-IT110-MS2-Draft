@@ -3,10 +3,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package EmployeePayrollMph;
+import java.awt.Dimension;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author Cal
@@ -21,10 +29,34 @@ PreparedStatement pst = null;
     public EmployeePayrollMph() {
         initComponents();
         
+       
+        Toolkit toolkit = getToolkit();
+        Dimension size = toolkit.getScreenSize();
+        setLocation (size.width/2 - getWidth()/2,size.height/2 - getHeight()/2);
+        
+        
+        
         conn = myMotorPHdb.java_myMotorPhdb();
+        currentDate();
                 
     }
-
+    public void currentDate(){
+        Calendar cal = new GregorianCalendar();
+        int month = cal.get(Calendar.MONTH);
+        int year = cal.get(Calendar.YEAR);
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+        
+        lbl_date.setText((month+1)+"/"+day+"/"+year);
+        
+        int second = cal.get(Calendar.SECOND);
+        int minute = cal.get(Calendar.MINUTE);
+        int hour   = cal.get(Calendar.HOUR);
+        
+        lbl_time.setText(hour + ";" + (minute) + ":" + second);
+    }
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -34,103 +66,109 @@ PreparedStatement pst = null;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         txt_username = new javax.swing.JTextField();
-        txt_password = new javax.swing.JTextField();
         txt_combo = new javax.swing.JComboBox<>();
+        txt_password = new javax.swing.JPasswordField();
+        jLabel5 = new javax.swing.JLabel();
+        jMenuBar2 = new javax.swing.JMenuBar();
+        jMenu3 = new javax.swing.JMenu();
+        lbl_date = new javax.swing.JMenu();
+        lbl_time = new javax.swing.JMenu();
+
+        jMenu1.setText("File");
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Edit");
+        jMenuBar1.add(jMenu2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setBackground(new java.awt.Color(0, 204, 255));
         jLabel1.setFont(new java.awt.Font("Alef", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 204, 255));
         jLabel1.setText("Please enter your username and password");
+        jLabel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, -1, 30));
 
+        jButton1.setBackground(new java.awt.Color(204, 204, 204));
+        jButton1.setFont(new java.awt.Font("Alef", 0, 12)); // NOI18N
         jButton1.setText("Login");
+        jButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 230, 70, -1));
 
         jLabel2.setFont(new java.awt.Font("Alef", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(51, 255, 255));
         jLabel2.setText("Username:");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, 80, -1));
 
         jLabel3.setFont(new java.awt.Font("Alef", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 255, 255));
         jLabel3.setText("Password:");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, 80, -1));
 
         jLabel4.setFont(new java.awt.Font("Alef", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 255, 255));
         jLabel4.setText("Department:");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, -1, -1));
 
-        txt_password.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_passwordActionPerformed(evt);
-            }
-        });
+        txt_username.setBackground(new java.awt.Color(0, 153, 255));
+        txt_username.setFont(new java.awt.Font("Alef", 0, 12)); // NOI18N
+        txt_username.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        getContentPane().add(txt_username, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, 240, -1));
 
+        txt_combo.setBackground(new java.awt.Color(0, 153, 255));
+        txt_combo.setFont(new java.awt.Font("Alef", 0, 12)); // NOI18N
         txt_combo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "Sales", " " }));
+        txt_combo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        getContentPane().add(txt_combo, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 190, 240, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 179, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 391, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jButton1)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel2)
-                                        .addComponent(jLabel3))
-                                    .addGap(56, 56, 56))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel4)
-                                    .addGap(42, 42, 42)))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txt_username, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txt_password, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txt_combo, javax.swing.GroupLayout.Alignment.LEADING, 0, 244, Short.MAX_VALUE)))))
-                .addGap(160, 160, 160))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(41, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txt_username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txt_password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txt_combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addContainerGap(40, Short.MAX_VALUE))
-        );
+        txt_password.setBackground(new java.awt.Color(0, 153, 255));
+        txt_password.setFont(new java.awt.Font("Alef", 1, 12)); // NOI18N
+        getContentPane().add(txt_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 150, 240, -1));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/EmployeePayrollMph/images/342361835_963439078014347_6992339821562141574_n.png"))); // NOI18N
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 0, 630, 350));
+
+        jMenu3.setBackground(new java.awt.Color(0, 0, 0));
+        jMenu3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jMenu3.setForeground(new java.awt.Color(0, 204, 255));
+        jMenu3.setText("File");
+        jMenuBar2.add(jMenu3);
+
+        lbl_date.setBackground(new java.awt.Color(0, 204, 255));
+        lbl_date.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        lbl_date.setForeground(new java.awt.Color(0, 204, 255));
+        lbl_date.setText("Date");
+        jMenuBar2.add(lbl_date);
+
+        lbl_time.setBackground(new java.awt.Color(0, 204, 255));
+        lbl_time.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        lbl_time.setForeground(new java.awt.Color(0, 204, 255));
+        lbl_time.setText("Time");
+        jMenuBar2.add(lbl_time);
+
+        setJMenuBar(jMenuBar2);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txt_passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_passwordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_passwordActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        String sql = "select id, username, division from Users where "
-                + "(username = ? and password = ? and division =?)";
+        String sql = "select id, username, division from Users where "+ "(username = ? and password = ? and division =?)";
         
         try{
             int count = 0;
@@ -143,7 +181,10 @@ PreparedStatement pst = null;
             
             rs = pst.executeQuery();
             while(rs.next()){
-                count = count+1;
+            int id = rs.getInt(1);
+            Emp.empId = id;
+            
+            count = count+1;
                 
             }
             
@@ -151,7 +192,7 @@ PreparedStatement pst = null;
             
             if (access == "Admin"){
                 if (count == 1);
-                JOptionPane.showMessageDialog(null, "Success");
+                JOptionPane.showMessageDialog(null, "Login Successful!");
                 MainMenu j = new MainMenu();
                 j.setVisible(true);
                 this.dispose();
@@ -220,8 +261,16 @@ PreparedStatement pst = null;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JMenu lbl_date;
+    private javax.swing.JMenu lbl_time;
     private javax.swing.JComboBox<String> txt_combo;
-    private javax.swing.JTextField txt_password;
+    private javax.swing.JPasswordField txt_password;
     private javax.swing.JTextField txt_username;
     // End of variables declaration//GEN-END:variables
 }
